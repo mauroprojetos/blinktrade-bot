@@ -1,0 +1,16 @@
+{
+  "name": "blinktrade",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "blinktrade": "^0.0.10",
+    "dotenv": "^4.0.0",
+    "nodemon": "^1.12.1"
+  },
+  "devDependencies": {},
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "MIT"
+}
