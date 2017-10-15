@@ -4,21 +4,20 @@ require('dotenv').config()
 
 let blinktrade = new BlinkTradeWS({ prod: true, brokerId: process.env.BROKERID })
 
-
 function onOrderBookNewOrder(data) {
-  console.log('OB:NEW_ORDER', data);
+  console.log('OB:NEW_ORDER', data)
 }
 function onOrderBookUpdateOrder(data) {
-  console.log('OB:UPDATE_ORDER', data);
+  console.log('OB:UPDATE_ORDER', data)
 }
 function onOrderBookDeleteOrder(data) {
-  console.log('OB:DELETE_ORDER', data);
+  console.log('OB:DELETE_ORDER', data)
 }
 function onOrderBookDeleteThruOrder(data) {
-  console.log('OB:DELETE_ORDERS_THRU', data);
+  console.log('OB:DELETE_ORDERS_THRU', data)
 }
 function onOrderBookTradeNew(data) {
-  console.log('OB:TRADE_NEW', data);
+  console.log('OB:TRADE_NEW', data)
 }
 
 
@@ -37,6 +36,3 @@ blinktrade.connect({
   .catch(function(err) {
     console.log(err)
   })
-
-
-
