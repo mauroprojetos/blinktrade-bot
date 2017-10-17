@@ -1,29 +1,38 @@
 let BlinkTrade = require('blinktrade')
 let BlinkTradeWS = BlinkTrade.BlinkTradeWS
+let {
+  createJSON,
+  init,
+  ErrorLog
+} = require('./helpers')
+
 require('dotenv').config()
 
 let blinktrade = new BlinkTradeWS({ prod: true, brokerId: process.env.BROKERID })
 
-function onOrderBookNewOrder(data) {
-  console.log('OB:NEW_ORDER', data)
+async function onOrderBookNewOrder (data) {
+  await createJSON(JSON.stringify(data))
 }
-function onOrderBookUpdateOrder(data) {
-  console.log('OB:UPDATE_ORDER', data)
+async function onOrderBookUpdateOrder(data) {
+  await createJSON(JSON.stringify(data))
 }
-function onOrderBookDeleteOrder(data) {
-  console.log('OB:DELETE_ORDER', data)
+async function onOrderBookDeleteOrder(data) {
+  await createJSON(JSON.stringify(data))
 }
-function onOrderBookDeleteThruOrder(data) {
-  console.log('OB:DELETE_ORDERS_THRU', data)
+async function onOrderBookDeleteThruOrder(data) {
+  await createJSON(JSON.stringify(data))
 }
-function onOrderBookTradeNew(data) {
-  console.log('OB:TRADE_NEW', data)
+async function onOrderBookTradeNew(data) {
+  await createJSON(JSON.stringify(data))
 }
-
 
 blinktrade.connect({
   username: process.env.APIKEY,
   password: process.env.APIPASS
+  })
+  .then(function(){
+    console.log(`Iniciado`)
+    return init()
   })
   .then(function() {
     return blinktrade.subscribeOrderbook([process.env.SYMBOLSBTC])
@@ -34,5 +43,5 @@ blinktrade.connect({
     .on('OB:TRADE_NEW', onOrderBookTradeNew)
   })
   .catch(function(err) {
-    console.log(err)
+    ErrorLog(err)
   })
